@@ -1,11 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const studentRoutes = require('./routes/studentRoutes');
 const teacherRoutes = require('./routes/teacherRoutes');
 
 const app = express();
 app.use(cors());
+app.use(bodyParser.json());
 app.use(express.json());
 
 mongoose.connect("mongodb+srv://root:root@private-teacher.t6sv6.mongodb.net/?retryWrites=true&w=majority&appName=private-teacher", {

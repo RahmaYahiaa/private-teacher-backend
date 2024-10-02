@@ -7,6 +7,7 @@ const TeacherSchema = new mongoose.Schema({
   teacher_desc: { type: String, required: true },
   subject_id: { type: String, required: true },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  Teacher_Id: { type: String, unique: true } 
 });
 
 const Teacher = mongoose.model('Teacher', TeacherSchema);
