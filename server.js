@@ -10,16 +10,14 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
 
+
+
 mongoose.connect("mongodb+srv://root:root@private-teacher.t6sv6.mongodb.net/?retryWrites=true&w=majority&appName=private-teacher", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log('Connected to MongoDB Atlas');
-  })
-  .catch((err) => {
-    console.error('MongoDB connection error:', err);
-  });
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => console.log('MongoDB connected'))
+  .catch(err => console.log(err));
+
 
 // استخدام الـ Routes
 app.use('/api/students', studentRoutes);
