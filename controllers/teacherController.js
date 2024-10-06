@@ -1,4 +1,7 @@
 const Teacher = require('../models/Teacher');
+const User = require('../models/User');
+const bcrypt = require('bcryptjs');
+const { v4: uuidv4 } = require('uuid');
 
 exports.registerTeacher = async (req, res) => {
   const { first_name, last_name, email, phone, teacher_desc, password, subject_id, image, country, rating, years_of_experience, gender } = req.body;

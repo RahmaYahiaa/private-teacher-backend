@@ -12,6 +12,7 @@ app.use(express.json());
 
 
 
+
 mongoose.connect("mongodb+srv://root:root@private-teacher.t6sv6.mongodb.net/?retryWrites=true&w=majority&appName=private-teacher", {
   useNewUrlParser: true,
   useUnifiedTopology: true
