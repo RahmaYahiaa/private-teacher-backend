@@ -1,26 +1,51 @@
+// exports.login = async (req, res) => {
+//   const { email, password } = req.body;
+
+//   try {
+//     // ابحث عن المستخدم باستخدام البريد الإلكتروني
+//     const user = await User.findOne({ email });
+//     if (!user) {
+//       return res.status(404).json({ success: false, message: 'User not found' }); // إذا لم يوجد المستخدم
+//     }
+
+//     // تحقق من تطابق كلمة المرور
+//     const isMatch = await bcrypt.compare(password, user.password);
+//     if (!isMatch) {
+//       return res.status(401).json({ success: false, message: 'Invalid credentials' }); // إذا كانت كلمة المرور غير صحيحة
+//     }
+
+//     // إذا تم التحقق من المستخدم بنجاح
+//     res.json({ success: true, message: 'Login successful' });
+//   } catch (err) {
+//     res.status(500).json({ success: false, message: err.message }); // أي خطأ آخر
+//   }
+// };
+
+
+
+
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // ابحث عن المستخدم باستخدام البريد الإلكتروني
+    // Find user by email
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).json({ success: false, message: 'User not found' }); // إذا لم يوجد المستخدم
+      return res.status(404).json({ success: false, message: 'User not found' }); // User does not exist
     }
 
-    // تحقق من تطابق كلمة المرور
+    // Check if the password matches
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(401).json({ success: false, message: 'Invalid credentials' }); // إذا كانت كلمة المرور غير صحيحة
+      return res.status(401).json({ success: false, message: 'Invalid credentials' }); // Incorrect password
     }
 
-    // إذا تم التحقق من المستخدم بنجاح
+    // If user is successfully verified
     res.json({ success: true, message: 'Login successful' });
   } catch (err) {
-    res.status(500).json({ success: false, message: err.message }); // أي خطأ آخر
+    res.status(500).json({ success: false, message: err.message }); // Any other error
   }
 };
-
 
 
 const User = require('../models/User');

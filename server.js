@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const studentRoutes = require('./routes/studentRoutes');
 const teacherRoutes = require('./routes/teacherRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 app.use(cors());
@@ -21,10 +22,13 @@ mongoose.connect("mongodb+srv://root:root@private-teacher.t6sv6.mongodb.net/?ret
 
 
 // استخدام الـ Routes
+app.use(bodyParser.json());
+app.use('/api/auth', authRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api/teachers', teacherRoutes);
 
 // بدء تشغيل الخادم
-app.listen(5000, () => {
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
   console.log('Server running on http://localhost:5000');
 });
