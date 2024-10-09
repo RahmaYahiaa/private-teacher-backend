@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const TeacherSchema = new mongoose.Schema({
+  userType: { type: String, default: 'teacher' },
   first_name: { type: String, required: true },
   last_name: { type: String, required: true },
   phone: { type: String, required: true },
@@ -10,13 +11,13 @@ const TeacherSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   image: {
     type: String,
-    default: "https://via.placeholder.com/150?text=No+Image" // URL to default image
+    default: "https://via.placeholder.com/150?text=No+Image" 
   },
-  country: { type: String, default: 'Egypt' }, // Country field
-  onlineStatus: { type: String, default: 'online' }, // Online status
-  rating: { type: Number, default: 0 }, // Rating field
-  years_of_experience: { type: Number, default: 0 }, // Added field for years of experience
-  gender: { type: String, default: 'Male', required: true } // Added field for gender
+  country: { type: String, default: 'Egypt' }, 
+  onlineStatus: { type: String, default: 'online' },
+  rating: { type: Number, default: 0 }, 
+  years_of_experience: { type: Number, default: 0 }, 
+  gender: { type: String, default: 'Male', required: true } 
 });
 
 const Teacher = mongoose.model('Teacher', TeacherSchema);
