@@ -46,3 +46,22 @@ exports.getTeachers = async (req, res) => {
     res.status(500).json({ success: false, message: err.message });
   }
 };
+
+
+// Controller لتحديث المدرس
+exports.updateTeacher = async (req, res) => {
+  try {
+      const teacher = await Teacher.findOneAndUpdate(
+          { userId: req.params.id }, 
+          req.body, 
+          { new: true, runValidators: true }
+      );
+      if (!teacher) {
+          return res.status(404).json({ success: false, message: 'Teacher not found' });
+      }
+      res.json({ success: true, data: teacher });
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
