@@ -11,13 +11,18 @@ const StudentSchema = new mongoose.Schema({
     default: "https://via.placeholder.com/150?text=No+Image" 
   },
   onlineStatus: { type: String, default: 'online' }, 
-  dateOfBirth: {
+  date_of_birth: {
     type: Date
   },
-  bio: {
-    type: String
-  },
-  interests: { type: String }
+  phone: { type: String }, 
+  gender: { type: String }, 
+  academic_level: { type: String }, 
+  language: {
+    type: String,
+    enum: ['English', 'Arabic', 'All Languages'],
+    default: 'English'
+  }
+ 
 
 });
 
