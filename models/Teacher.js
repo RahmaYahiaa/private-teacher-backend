@@ -37,6 +37,7 @@ const TeacherSchema = new mongoose.Schema({
     enum: ['Math', 'Science', "Arabic", "English", "French", "Biology", "Chemistry", "Physics", "History", "Geography", "Psychology", "Sociology", "Philosophy", "Political"],
     default: 'Math'
   },
+  // interests: { type: [String], default: [] }
 
 });
 

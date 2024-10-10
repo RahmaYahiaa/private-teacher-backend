@@ -27,7 +27,8 @@ exports.registerTeacher = async (req, res) => {
       onlineStatus: 'online', // Default online status
       rating: rating || 0, // Default rating
       years_of_experience: years_of_experience || 0, // Default years of experience
-      gender // Set the provided gender
+      gender, // Set the provided gender
+      // interests: interests || [] // Set the provided interests
     });
 
     await teacher.save();
