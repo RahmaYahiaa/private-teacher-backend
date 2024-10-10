@@ -5,7 +5,6 @@ const bcrypt = require('bcryptjs');
 
 exports.registerStudent = async (req, res) => {
   const { firstName, lastName, email, country, password ,date_of_birth, phone, gender, academic_level, language } = req.body;
-
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ email, password: hashedPassword, userType: 'student' });
@@ -42,4 +41,5 @@ exports.updateStudent = async (req, res) => {
         console.error(err);
         res.status(500).json({ success: false, message: 'Server error' });
     }
+    
 };

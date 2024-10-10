@@ -10,14 +10,14 @@ const TeacherSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   image: {
     type: String,
-    default: "https://via.placeholder.com/150?text=No+Image"
+    default: "https://via.placeholder.com/150?text=No+Image" 
   },
-  country: { type: String, default: 'Egypt' },
+  country: { type: String, default: 'Egypt' }, 
   onlineStatus: { type: String, default: 'online' },
   rating: { type: Number, default: 0 },
   years_of_experience: { type: Number, default: 0 },
-  gender: { type: String, default: 'Male', required: true },
-  date_of_birth: { type: Date, required: true },
+  gender: { type: String, default: 'Male' },
+  date_of_birth: { type: Date },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
   is_active: { type: Boolean, default: true },
@@ -37,9 +37,9 @@ const TeacherSchema = new mongoose.Schema({
     enum: ['Math', 'Science', "Arabic", "English", "French", "Biology", "Chemistry", "Physics", "History", "Geography", "Psychology", "Sociology", "Philosophy", "Political"],
     default: 'Math'
   },
-  // interests: { type: [String], default: [] }
-
 });
+
+
 
 const Teacher = mongoose.model('Teacher', TeacherSchema);
 module.exports = Teacher;
