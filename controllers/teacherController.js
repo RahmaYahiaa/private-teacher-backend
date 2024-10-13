@@ -172,3 +172,17 @@ exports.getTeacherById = async (req, res) => {
   //   }
   // };
 //};
+
+
+exports.deleteTeacher = async (req, res) => {
+  try {
+      const teacher = await Teacher.findOneAndDelete({ userId: req.params.id });
+      if (!teacher) {
+          return res.status(404).json({ success: false, message: 'Teacher not found' });
+      }
+      res.json({ success: true, data: {} });
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ success: false, message: 'Server error' });
+  }
+}

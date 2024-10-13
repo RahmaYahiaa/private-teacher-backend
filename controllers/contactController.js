@@ -20,3 +20,29 @@ exports.submitContactForm = async (req, res) => {
     res.status(500).json({ message: 'Error submitting form', error: error.message });
   }
 };
+
+// Controller function to get all contact entries
+exports.getContacts = async (req, res) => {
+  try {
+    // Fetch all contact entries from MongoDB
+    const contacts = await Contact.find();
+
+    // Send the contact entries as a response
+    res.json(contacts);
+  } catch (error) {
+    // Handle errors and send failure response
+    res.status(500).json({ message: 'Error fetching contacts', error: error.message });
+  }
+};
+
+exports.deleteContact = async (req, res) => {
+  try {
+    const contact = await Contact.findByIdAndDelete(req.params.id);
+    if (!contact) {
+      return res.status(404).json({ success: false, message: 'Contact not found' });
+    }
+    res.json({ success: true, message: 'Contact deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
