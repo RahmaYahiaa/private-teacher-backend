@@ -13,6 +13,8 @@ router.delete('/delete/:id', teacherController.deleteTeacher);
 router.get('/list/:id', teacherController.getTeacherById);
 router.get('/teacher-counts', getTeacherCountsByLevel);
 router.get('/subject-counts', teacherController.getTeacherCountBySubject);
+router.put('/rate/:id', teacherController.updateRating);
+
 
 // router.get('/rating-counts', getTeacherRatingCounts);
 
