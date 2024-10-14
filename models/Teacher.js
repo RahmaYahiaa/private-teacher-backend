@@ -5,6 +5,11 @@ const TeacherSchema = new mongoose.Schema({
   first_name: { type: String, required: true },
   last_name: { type: String, required: true },
   phone: { type: String, required: true },
+  email: { 
+    type: String, 
+    unique: true, 
+    match: [/^\S+@\S+\.\S+$/, 'Please enter a valid email address'] 
+  },
   teacher_desc: { type: String, required: true },
   Teacher_Id: { type: String, unique: true },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

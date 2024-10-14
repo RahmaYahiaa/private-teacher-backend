@@ -6,10 +6,14 @@ const router = express.Router();
 router.post('/register', registerStudent);
 
 router.put('/update/:id', updateStudent);
+router.delete('/delete/:id', deleteStudent);
+
 
 router.get('/list', getStudents);
 
-router.delete('/delete/:id', deleteStudent);
+
+
+
 
 
 

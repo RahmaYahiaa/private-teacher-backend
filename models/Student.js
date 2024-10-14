@@ -6,6 +6,12 @@ const StudentSchema = new mongoose.Schema({
   lastName: { type: String, required: true },
   country: { type: String, required: true },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  Student_Id: { type: String, unique: true },
+  email: { 
+    type: String,  
+    unique: true, 
+    match: [/^\S+@\S+\.\S+$/, 'Please enter a valid email address'] 
+  },
   image: {
     type: String,
     default: "https://via.placeholder.com/150?text=No+Image" 

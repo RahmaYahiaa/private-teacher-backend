@@ -4,17 +4,17 @@ const Student = require('../models/Student');
 const bcrypt = require('bcryptjs');
 
 exports.registerStudent = async (req, res) => {
-  const { firstName, lastName, email, country, password, date_of_birth, phone, gender, academic_level, language } = req.body;
+  const { studentId,firstName, lastName, email, country, password, date_of_birth, phone, gender, academic_level, language } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ email, password: hashedPassword, userType: 'student' });
     await user.save();
 
     const student = new Student({
-      firstName, lastName, country, date_of_birth, phone,
+      firstName, lastName, country, date_of_birth, phone,email, 
       gender,
       academic_level,
-      language, userId: user._id
+      language, userId: user._id,Student_Id: studentId,
     });
     await student.save();
 
@@ -59,10 +59,11 @@ exports.getStudents = async (req, res) => {
 
 exports.deleteStudent = async (req, res) => {
   try {
-    const student = await Student.findOneAndDelete({ userId: req.params.id });
+    const student = await Student.findOneAndDelete({ _id: req.params.id });
     if (!student) {
       return res.status(404).json({ success: false, message: 'Student not found' });
     }
+    await User.findByIdAndDelete(student.userId);
     res.json({ success: true, data: {} });
   } catch (err) {
     console.error(err);

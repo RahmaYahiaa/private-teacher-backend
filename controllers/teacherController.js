@@ -18,6 +18,7 @@ exports.registerTeacher = async (req, res) => {
       first_name,
       last_name,
       phone,
+      email,
       teacher_desc,
       subject_id,
       Teacher_Id: teacherId,
@@ -174,15 +175,28 @@ exports.getTeacherById = async (req, res) => {
 //};
 
 
+// exports.deleteTeacher = async (req, res) => {
+//   try {
+//       const teacher = await Teacher.findOneAndDelete({ userId: req.params.id });
+//       if (!teacher) {
+//           return res.status(404).json({ success: false, message: 'Teacher not found' });
+//       }
+//       res.json({ success: true, data: {} });
+//   } catch (err) {
+//       console.error(err);
+//       res.status(500).json({ success: false, message: 'Server error' });
+//   }
+// }
 exports.deleteTeacher = async (req, res) => {
   try {
-      const teacher = await Teacher.findOneAndDelete({ userId: req.params.id });
+      const teacher = await Teacher.findOneAndDelete({ Teacher_Id: req.params.id });
       if (!teacher) {
           return res.status(404).json({ success: false, message: 'Teacher not found' });
       }
+      await User.findByIdAndDelete(teacher.userId);
       res.json({ success: true, data: {} });
   } catch (err) {
-      console.error(err);
-      res.status(500).json({ success: false, message: 'Server error' });
+      console.error('Error deleting teacher:', err);
+      res.status(500).json({ success: false, message: 'Server error', error: err.message });
   }
 }
